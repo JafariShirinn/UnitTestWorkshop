@@ -4,6 +4,8 @@
     {
         public void StartStreaming(string movieName)
         {
+            Console.ForegroundColor = ConsoleColor.Green; // Set text color to red for warning
+
             Console.WriteLine($"Welcome to Movie {movieName} Streaming");
             Console.WriteLine("Press Enter to start streaming...");
             Console.ReadLine();
@@ -30,7 +32,8 @@
                 Thread.Sleep(500); // Sleep for half a second to simulate loading
             }
 
-            Console.WriteLine("\n\nMovie stream complete. Enjoy your movie!");
+            Console.WriteLine("\n\nMovie stream complete.");
+            Console.ResetColor(); // Reset text color to default
         }
     }
 }

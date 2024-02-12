@@ -1,10 +1,19 @@
-﻿using StreamingService.Clients;
+﻿using System.Text;
+using StreamingService.Clients;
 using StreamingService.Persistence;
 
 namespace StreamingService.Services
 {
     public class MovieService
     {
+
+       private enum MovieTags
+        {
+            Sensitive,
+            Animation,
+            Family
+
+        }
         private readonly StreamingClient _streamingClient;
         public MovieService()
         {
@@ -17,7 +26,7 @@ namespace StreamingService.Services
 
         public bool ShowContent(int age, string movieName)
         {
-            if (age < 16)
+            if (age < 13)
             {
                 if (IsKidsFriendly(movieName))
                 {
@@ -26,7 +35,10 @@ namespace StreamingService.Services
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Red; // Set text color to red for warning
                     Console.WriteLine("Age Alert!!!");
+                    Console.ResetColor(); // Reset text color to default
+                    
                     return false;
                 }
             }
@@ -39,15 +51,9 @@ namespace StreamingService.Services
 
         private bool IsSensitive(string movieTag)
         {
-            return movieTag == "Sensitive";
+            return movieTag == MovieTags.Sensitive.ToString();
         }
 
-        private List<string> OrderMovies()
-        {
-            return MoviesData.Movies
-                .Where(x => x.Value != "Sensitive")
-                .Select(x => x.Key).ToList();
-        }
 
         private void SetStar(string movieName)
         {
@@ -58,14 +64,14 @@ namespace StreamingService.Services
         }
 
 
-        /// <summary>
-        /// ShowKidsMovies
-        /// </summary>
-        /// <returns></returns>
-        private List<string> ShowKidsMovies()
-        {
-            return MoviesData.Movies.Where(x => x.Value != "Sensitive").Select(x => x.Key).ToList();
-        }
+        ///// <summary>
+        ///// ShowKidsMovies
+        ///// </summary>
+        ///// <returns></returns>
+        //private List<string> ShowKidsMovies()
+        //{
+        //    return MoviesData.Movies.Where(x => x.Value != "Sensitive").Select(x => x.Key).ToList();
+        //}
 
 
         /// <summary>

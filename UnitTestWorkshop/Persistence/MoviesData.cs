@@ -46,7 +46,10 @@
             {"Sing", "Animation"},
             {"Paddington", "Animation"},
             {"The Incredibles", "Animation"},
-            {"Monsters, Inc.", "Animation"}
+            {"Monsters, Inc.", "Animation"},
+            {"he Paddington 2","Family"},
+            {"The Jungle Book","Family"},
+            {"Mary Poppins Returns","Family"}
         };
     }
 }

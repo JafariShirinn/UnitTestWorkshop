@@ -7,8 +7,9 @@ namespace StreamingService.Services
     public class MovieService
     {
 
-       private enum MovieTags
+        private enum MovieTags
         {
+            VerySensitive,
             Sensitive,
             Animation,
             Family
@@ -35,15 +36,29 @@ namespace StreamingService.Services
                 }
                 else
                 {
+                    
+
                     Console.ForegroundColor = ConsoleColor.Red; // Set text color to red for warning
                     Console.WriteLine("Age Alert!!!");
                     Console.ResetColor(); // Reset text color to default
-                    
+
                     return false;
                 }
             }
             else
             {
+                if (age < 18)
+                {
+                    if (!IsTeenFriendly(movieName))
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red; // Set text color to red for warning
+                        Console.WriteLine("Age Alert!!!");
+                        Console.ResetColor(); // Reset text color to default
+
+                        return false;
+                    }
+                }
+
                 _streamingClient.StartStreaming(movieName);
                 return true;
             }
@@ -54,6 +69,10 @@ namespace StreamingService.Services
             return movieTag == MovieTags.Sensitive.ToString();
         }
 
+        private bool IsVerySensitive(string movieTag)
+        {
+            return movieTag == MovieTags.VerySensitive.ToString();
+        }
 
         private void SetStar(string movieName)
         {
@@ -86,6 +105,15 @@ namespace StreamingService.Services
                 .Select(x => x.Value).FirstOrDefault();
 
             return !IsSensitive(movieTag);
+        }
+
+        private bool IsTeenFriendly(string movieName)
+        {
+            var movieTag = MoviesData.Movies
+                .Where(x => x.Key == movieName)
+                .Select(x => x.Value).FirstOrDefault();
+
+            return !IsVerySensitive(movieTag);
         }
     }
 }

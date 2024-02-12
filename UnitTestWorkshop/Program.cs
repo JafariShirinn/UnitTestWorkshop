@@ -10,12 +10,12 @@ class Program
         var authenticationService = new AuthenticationService();
         var ageService = new AgeService();
         var movieService = new MovieService();
-        //Console.WriteLine("Enter User: ");
-        //var user = Console.ReadLine();
-        //Console.WriteLine("Enter Password: ");
-        //var password = Console.ReadLine();
-        var user = "user1";
-        var password = "password1";
+        Console.WriteLine("Enter User: ");
+        var user = Console.ReadLine();
+        Console.WriteLine("Enter Password: ");
+        var password = Console.ReadLine();
+        //var user = "user1";
+        //var password = "password1";
 
         var isAuthenticateUser = authenticationService.AuthenticateUser(user, password);
         do

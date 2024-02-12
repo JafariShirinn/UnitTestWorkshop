@@ -49,7 +49,8 @@
             {"Monsters, Inc.", "Animation"},
             {"he Paddington 2","Family"},
             {"The Jungle Book","Family"},
-            {"Mary Poppins Returns","Family"}
+            {"Mary Poppins Returns","Family"},
+            {"XXX","VerySensitive"}
         };
     }
 }

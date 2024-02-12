@@ -6,7 +6,7 @@ namespace StreamingService.Services
     {
         public int CalculateAge(string user)
         {
-            return UserData.UserAge.GetValueOrDefault("user");
+            return UserData.UserAge.GetValueOrDefault(user);
         }
     }
 }
